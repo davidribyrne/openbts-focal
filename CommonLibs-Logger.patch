@@ -1,0 +1,12 @@
+--- CommonLibs/Logger.h	2019-12-22 00:29:05.617846502 +0000
++++ CommonLibs/Logger.h	2019-12-22 00:29:34.821572515 +0000
+@@ -48,9 +48,6 @@
+ // If timestr decl is changed G++ will whine when Utils.h is included.
+ namespace Utils { const std::string timestr(); };
+ 
+-#if !defined(gettid)
+-# define gettid() syscall(SYS_gettid)
+-#endif // !defined(gettid)
+ 
+ extern pid_t gPid;
+ #define _LOG(level) \

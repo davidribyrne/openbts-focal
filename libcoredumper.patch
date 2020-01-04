@@ -1,0 +1,63 @@
+--- src/elfcore.c	2014-01-18 00:06:12.515005220 -0800
++++ src/elfcore.c	2014-01-18 00:06:43.651893716 -0800
+@@ -52,6 +52,7 @@
+ #include <sys/time.h>
+ #include <sys/uio.h>
+ #include <sys/wait.h>
++#include <linux/sched.h>
+ 
+ #include "google/coredumper.h"
+ #include "linux_syscall_support.h"
+--- src/linuxthreads.c	2014-01-18 00:05:27.917732629 -0800
++++ src/linuxthreads.c	2014-01-18 00:07:59.802066678 -0800
+@@ -49,7 +49,7 @@
+ #include <asm/fcntl.h>
+ #include <asm/posix_types.h>
+ #include <asm/types.h>
+-#include <linux/dirent.h>
++#include <linux/sched.h>
+ 
+ #include "linux_syscall_support.h"
+ #include "thread_lister.h"
+--- src/linux_syscall_support_unittest.cc	2014-01-18 00:05:09.437205286 -0800
++++ src/linux_syscall_support_unittest.cc	2014-01-18 00:07:11.832697862 -0800
+@@ -62,7 +62,7 @@
+ #include <asm/posix_types.h>
+ #include <asm/types.h>
+ #include <errno.h>
+-#include <linux/dirent.h>
++#include <dirent.h>
+ #include <linux/types.h>
+ #include <linux/unistd.h>
+ #include <signal.h>
+--- debian/control	2008-04-04 09:18:01.000000000 -0600
++++ ../../coredumper-1.2.1/debian/control	2019-12-21 14:09:51.708438049 -0700
+@@ -7,7 +7,7 @@
+ Package: libcoredumper-dev
+ Section: libdevel
+ Architecture: any
+-Depends: libcoredumper1 (= ${Source-Version})
++Depends: libcoredumper1 
+ Description: library for generating on-the-fly snapshot core files
+  Libcoredumper can be compiled into applications to create core dumps of
+  the running program, without having to terminate them. It supports both
+--- debian/compat	2008-03-28 16:38:56.000000000 -0600
++++ ../../coredumper-1.2.1/debian/compat	2019-12-21 14:06:35.697768156 -0700
+@@ -1 +1 @@
+-4
++9
+--- debian/libcoredumper-dev.install	2008-03-28 16:38:56.000000000 -0600
++++ ../../coredumper-1.2.1/debian/libcoredumper-dev.install	2019-12-21 14:06:53.012692058 -0700
+@@ -3,7 +3,3 @@
+ usr/lib/lib*.a
+ usr/lib/*.la
+ usr/share/man/man3/*
+-debian/tmp/usr/include/google/*
+-debian/tmp/usr/lib/lib*.so
+-debian/tmp/usr/lib/lib*.a
+-debian/tmp/usr/lib/*.la
+--- debian/libcoredumper1.install	2008-04-04 09:15:35.000000000 -0600
++++ ../../coredumper-1.2.1/debian/libcoredumper1.install	2019-12-21 14:07:01.712692125 -0700
+@@ -1,2 +1 @@
+ usr/lib/lib*.so.*
+-debian/tmp/usr/lib/lib*.so.*
